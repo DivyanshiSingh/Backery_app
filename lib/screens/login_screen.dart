@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:bakery_app/screens/signup.dart';
 
 class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final log = Logger();
   final userName = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,7 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     // width:250,
                                     color: Colors.pink,
                                     textColor: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      log.v('This is verbose');
+                                      log.d('This ia a debug message');
+                                      log.i(
+                                          'This is info, should be used for public calls');
+                                    },
                                     child: Text(
                                       'Login',
                                       style: TextStyle(
@@ -135,7 +143,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // width:250,
                                 color: Colors.transparent,
 
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignUp(),
+                                    ),
+                                  );
+                                },
                                 child: Text(
                                   "New Account",
                                   style: TextStyle(
